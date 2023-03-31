@@ -3,11 +3,22 @@ import tkinter as tk
 
 window = tk.Tk()
 window.title("Volume mixer")
+
 labels = []
 volumes = []
 volume_labels = []
 volume_label_stringVars = []
 sliders = []
+saved_sessions = AudioUtilities.GetAllSessions()
+
+
+def init_lists():
+    global labels, volumes, volume_labels, volume_label_stringVars, sliders
+    labels = []
+    volumes = []
+    volume_labels = []
+    volume_label_stringVars = []
+    sliders = []
 
 
 def change_volume(volume, volume_label_string, new_volume):
@@ -37,13 +48,24 @@ def add_volume_slider(session):
         current_slider.grid(column=sliders.index(current_slider), row=2)
 
 
-def main():
+def init_sliders():
+    global saved_sessions
     sessions = AudioUtilities.GetAllSessions()
+    saved_sessions = sessions
+    init_lists()
+    for widget in window.winfo_children():
+        widget.destroy()
     for session in sessions:
         add_volume_slider(session)
     window.update()
 
 
+def check_sessions():
+    if saved_sessions != AudioUtilities.GetAllSessions():
+        init_sliders()
+    window.after(1000, check_sessions)
+
+
 if __name__ == "__main__":
-    main()
+    check_sessions()
     window.mainloop()
