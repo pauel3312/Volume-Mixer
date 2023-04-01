@@ -3,6 +3,7 @@ import tkinter as tk
 
 window = tk.Tk()
 window.title("Volume mixer")
+window.iconbitmap("VMIcon_1.ico")
 
 labels = []
 volumes = []
