@@ -33,7 +33,6 @@ def init_lists():
 
 def change_volume_with_popup(volume, volume_label_string, volume_slider, *args):
     new_volume = start_popup()
-    print(new_volume)
     volume.SetMasterVolume(int(new_volume)/100, None)
     volume_label_string.set(f"volume : {int(volume.GetMasterVolume() * 100)}%")
     volume_slider.set(new_volume)
@@ -114,7 +113,6 @@ class PopupEntry(tk.Frame):
 def check_sessions():
     global saved_sessions
     if saved_sessions != get_saved_sessions():
-        print(saved_sessions)
         saved_sessions = get_saved_sessions()
         init_sliders()
     window.after(1000, check_sessions)
