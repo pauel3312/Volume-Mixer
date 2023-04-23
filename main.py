@@ -37,6 +37,7 @@ def change_volume_with_popup(volume, volume_label_string, volume_slider, *args):
     volume_label_string.set(f"volume : {int(volume.GetMasterVolume() * 100)}%")
     volume_slider.set(new_volume)
     window.update()
+    return 'break'
 
 
 def change_volume(volume, volume_label_string, new_volume):
@@ -65,9 +66,9 @@ def add_volume_slider(session):
         current_volume_label.grid(column=volume_labels.index(current_volume_label), row=1)
         current_slider.grid(column=sliders.index(current_slider), row=2)
 
-        current_label.bind("<Button-2>", partial(change_volume_with_popup, current_volume,
+        current_slider.bind("<Button-2>", partial(change_volume_with_popup, current_volume,
                                                  current_volume_label_stringVar, current_slider))
-        current_label.bind("<Button-3>", partial(change_volume_with_popup, current_volume,
+        current_slider.bind("<Button-3>", partial(change_volume_with_popup, current_volume,
                                                  current_volume_label_stringVar, current_slider))
 
 
