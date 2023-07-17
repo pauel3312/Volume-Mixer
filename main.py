@@ -99,7 +99,7 @@ class PopupEntry(tk.Frame):
         super().__init__(master)
 
         self.top = tk.Toplevel(master)
-        self.top.geometry("+2900+200")
+        self.top.geometry("+200+200")
         self.label = tk.Label(self.top, text="enter percentage")
         self.label.pack()
         self.entry = tk.Entry(self.top)
