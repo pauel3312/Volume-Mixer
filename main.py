@@ -1,4 +1,4 @@
-from pycaw.pycaw import AudioUtilities, ISimpleAudioVolume, AudioSession
+from pycaw.pycaw import AudioUtilities, AudioSession
 from functools import partial
 import tkinter as tk
 from typing import Optional, Any, Callable
@@ -53,7 +53,7 @@ def change_volume(volume, volume_label_string, new_volume):
 def add_volume_slider(session: AudioSession) -> None:
     if session.Process:
         current_label: tk.Label = tk.Label(window, text=session.Process.name().strip(".exe"))
-        current_volume = session._ctl.QueryInterface(ISimpleAudioVolume)
+        current_volume = session.SimpleAudioVolume
         current_volume_label_stringVar: tk.StringVar = tk.StringVar()
         current_volume_label_stringVar.set(f"volume :{int(current_volume.GetMasterVolume() * 100)}%")
         current_volume_label: tk.Label = tk.Label(window, textvariable=current_volume_label_stringVar)
